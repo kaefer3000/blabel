@@ -229,7 +229,7 @@ public class LabelRDFGraph {
 				stmts.add(new Node[]{triple[0], triple[1], triple[2]});
 				bnode = bnode | (triple[0] instanceof BNode) | (triple[2] instanceof BNode);
 			} else{
-				LOG.warning("Not a triple "+Nodes.toN3(triple));
+				LOG.warning("Not a triple "+Nodes.toString(triple));
 			}
 		}
 		LOG.info("Loaded "+stmts.size()+" triples");
@@ -326,10 +326,12 @@ public class LabelRDFGraph {
 		int written = 0;
 		TreeSet<Node[]> canonicalGraph = clr.getGraph();
 		GraphLabelIterator gli = new GraphLabelIterator(canonicalGraph.iterator(), prefix, writeBnode);
+		out.startDocument();
 		while(gli.hasNext()){
 			out.processStatement(gli.next());
 			written ++;
 		}
+		out.endDocument();
 		LOG.info("... written "+written+" statements.");
 
 		return clr;

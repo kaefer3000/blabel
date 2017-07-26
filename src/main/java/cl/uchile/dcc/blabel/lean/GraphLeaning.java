@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 import org.semanticweb.yars.nx.BNode;
 import org.semanticweb.yars.nx.Node;
-import org.semanticweb.yars.nx.NodeComparator;
+import org.semanticweb.yars.nx.NodeArrayComparator;
 import org.semanticweb.yars.nx.Nodes;
 import org.semanticweb.yars.stats.Count;
 
@@ -252,7 +252,7 @@ public abstract class GraphLeaning implements Callable<GraphLeaningResult>{
 	}
 
 	public static TreeSet<Node[]> mapData(Collection<Node[]> data, Map<BNode,Node> map) throws InterruptedException{
-		TreeSet<Node[]> leanData = new TreeSet<Node[]>(NodeComparator.NC);
+		TreeSet<Node[]> leanData = new TreeSet<Node[]>(NodeArrayComparator.NC);
 		boolean identity = isIdentityMap(map);
 		for(Node[] triple:data){
 			if (Thread.interrupted()) {
@@ -428,7 +428,7 @@ public abstract class GraphLeaning implements Callable<GraphLeaningResult>{
 		}
 		
 		bnodes.removeAll(nlbnodeMap.keySet());
-		filteredData = new TreeSet<Node[]>(NodeComparator.NC);
+		filteredData = new TreeSet<Node[]>(NodeArrayComparator.NC);
 		for(Node[] triple:data){
 			if((!(triple[0] instanceof BNode) || !nlbnodeMap.containsKey(triple[0])) && (!(triple[2] instanceof BNode) || !nlbnodeMap.containsKey(triple[2]))){
 				filteredData.add(triple);
@@ -494,7 +494,7 @@ public abstract class GraphLeaning implements Callable<GraphLeaningResult>{
 			}
 			
 			if(triple.length<3){
-				LOG.warning("Not a triple: "+Nodes.toN3(triple));
+				LOG.warning("Not a triple: "+Nodes.toString(triple));
 			} else {
 				if(triple[0] instanceof BNode){
 					bnodes.add((BNode) triple[0]);
@@ -523,7 +523,7 @@ public abstract class GraphLeaning implements Callable<GraphLeaningResult>{
 			}
 			
 			if(triple.length<3){
-				LOG.warning("Not a triple: "+Nodes.toN3(triple));
+				LOG.warning("Not a triple: "+Nodes.toString(triple));
 			} else {
 				if(!(triple[0] instanceof BNode && !fixedBnodes.contains(triple[0]))){
 					// term triple[0] is ground
@@ -877,7 +877,7 @@ public abstract class GraphLeaning implements Callable<GraphLeaningResult>{
 		// ordered by selectivity second
 		ArrayList<Node[]> rawOrdered = new ArrayList<Node[]>();
 		TreeSet<VariableSelectivityEstimate> queue = new TreeSet<VariableSelectivityEstimate>();
-		TreeSet<Node[]> done = new TreeSet<Node[]>(NodeComparator.NC);
+		TreeSet<Node[]> done = new TreeSet<Node[]>(NodeArrayComparator.NC);
 		HashSet<Node> varsDone = new HashSet<Node>();
 
 		while(rawOrdered.size()<patterns.size()){
@@ -999,7 +999,7 @@ public abstract class GraphLeaning implements Callable<GraphLeaningResult>{
 	protected static String toN3(Collection<Node[]> data){
 		StringBuilder sb = new StringBuilder();
 		for(Node[] t:data){
-			sb.append(Nodes.toN3(t)+"\n");
+			sb.append(Nodes.toString(t)+"\n");
 		}
 		return sb.toString();
 	}

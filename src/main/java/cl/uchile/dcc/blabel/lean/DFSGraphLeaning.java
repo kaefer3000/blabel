@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 import org.semanticweb.yars.nx.BNode;
 import org.semanticweb.yars.nx.Node;
-import org.semanticweb.yars.nx.NodeComparator;
+import org.semanticweb.yars.nx.NodeArrayComparator;
 import org.semanticweb.yars.nx.Nodes;
 import org.semanticweb.yars.nx.parser.NxParser;
 import org.semanticweb.yars.stats.Count;
@@ -224,7 +224,7 @@ public class DFSGraphLeaning extends GraphLeaning{
 							if(bi>=signature.size()){
 								System.err.println(signature);
 								System.err.println(indexes);
-								System.err.println(Nodes.toN3(bind));
+								System.err.println(Nodes.toString(bind));
 							}
 							signature.set(bi,j);
 						}
@@ -392,7 +392,7 @@ public class DFSGraphLeaning extends GraphLeaning{
 		NxParser nxp = new NxParser(br);
 		
 
-		TreeSet<Node[]> triples = new TreeSet<Node[]>(NodeComparator.NC);
+		TreeSet<Node[]> triples = new TreeSet<Node[]>(NodeArrayComparator.NC);
 		
 		while(nxp.hasNext()){
 			Node[] triple = nxp.next();

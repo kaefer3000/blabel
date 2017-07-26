@@ -11,7 +11,7 @@ import java.util.concurrent.Callable;
 
 import org.semanticweb.yars.nx.BNode;
 import org.semanticweb.yars.nx.Node;
-import org.semanticweb.yars.nx.NodeComparator;
+import org.semanticweb.yars.nx.NodeArrayComparator;
 import org.semanticweb.yars.nx.Nodes;
 import org.semanticweb.yars.nx.parser.NxParser;
 
@@ -72,7 +72,7 @@ public class GraphLabelling implements Callable<GraphLabellingResult> {
 		int leaves = 0;
 		
 		// this stores the canonical result
-		TreeSet<Node[]> fullGraph = new TreeSet<Node[]>(NodeComparator.NC);
+		TreeSet<Node[]> fullGraph = new TreeSet<Node[]>(NodeArrayComparator.NC);
 		
 		ArrayList<HashCode> hashes = new ArrayList<HashCode>();
 		
@@ -431,7 +431,7 @@ public class GraphLabelling implements Callable<GraphLabellingResult> {
 		NxParser nxp = new NxParser(br);
 		
 
-		TreeSet<Node[]> triples = new TreeSet<Node[]>(NodeComparator.NC);
+		TreeSet<Node[]> triples = new TreeSet<Node[]>(NodeArrayComparator.NC);
 		
 		while(nxp.hasNext()){
 			Node[] triple = nxp.next();
@@ -457,7 +457,7 @@ public class GraphLabelling implements Callable<GraphLabellingResult> {
 		System.err.println(glr.getGraph().size());
 		
 		for(Node[] out:glr.getGraph()){
-			System.err.println(Nodes.toN3(out));
+			System.err.println(Nodes.toString(out));
 		}
 		
 		

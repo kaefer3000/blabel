@@ -43,9 +43,9 @@ public class GraphLabelIterator implements Iterator<Node[]> {
 		if(b instanceof BNode){
 			Node n = null;
 			if(bnode){
-				n = new BNode(prefix+b.toString());
+				n = new BNode(prefix+b.getLabel());
 			} else{
-				n = new Resource(prefix+b.toString());
+				n = new Resource(prefix+b.getLabel());
 			}
 			return n;
 		} else return b;

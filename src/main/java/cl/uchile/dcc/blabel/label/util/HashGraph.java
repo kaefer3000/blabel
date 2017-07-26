@@ -147,7 +147,7 @@ public class HashGraph {
 				hc = blankHash;
 				dynamicHashes.put(n, hc);
 			} else{
-				hc = hf.hashString(n.toN3(), Charsets.UTF_8);
+				hc = hf.hashString(n.toString(), Charsets.UTF_8);
 				staticHashes.put(n,hc);
 			}
 		}
@@ -239,7 +239,7 @@ public class HashGraph {
 		
 		for(Node[] triple:data){
 			for(Node n: triple){
-				buf.append(n.toN3()+"#"+getHash(n)+" ");
+				buf.append(n.toString()+"#"+getHash(n)+" ");
 			}
 			buf.append(".\n");
 		}

@@ -157,7 +157,7 @@ public class BFSGraphLeaning extends GraphLeaning{
 		GraphLeaningResult glr = gl.call();
 		
 		for(Node[] leanTriple: glr.leanData){
-			System.err.println(Nodes.toN3(leanTriple));
+			System.err.println(Nodes.toString(leanTriple));
 		}
 		
 		System.err.println(glr.coreMap);

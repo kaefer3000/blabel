@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Iterator;
 
 import org.semanticweb.yars.nx.Node;
-import org.semanticweb.yars.nx.NodeComparator;
+import org.semanticweb.yars.nx.NodeArrayComparator;
 import org.semanticweb.yars.nx.Nodes;
 
 public class PatternSelectivityEstimate implements Comparable<PatternSelectivityEstimate>{
@@ -39,7 +39,7 @@ public class PatternSelectivityEstimate implements Comparable<PatternSelectivity
 		int comp = cardList.size() - arg0.cardList.size();
 		if(comp!=0) return comp;
 		
-		return NodeComparator.NC.compare(pattern, arg0.pattern);
+		return NodeArrayComparator.NC.compare(pattern, arg0.pattern);
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class PatternSelectivityEstimate implements Comparable<PatternSelectivity
 
 	@Override
 	public String toString(){
-		return Nodes.toN3(pattern) + "card: " + Arrays.toString(card) + "cardList: " + cardList;
+		return Nodes.toString(pattern) + "card: " + Arrays.toString(card) + "cardList: " + cardList;
 	}
 
 	public Node[] getPattern() {

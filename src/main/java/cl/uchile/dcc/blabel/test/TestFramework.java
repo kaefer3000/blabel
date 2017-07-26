@@ -26,7 +26,7 @@ import java.util.concurrent.TimeoutException;
 
 import org.semanticweb.yars.nx.BNode;
 import org.semanticweb.yars.nx.Node;
-import org.semanticweb.yars.nx.NodeComparator;
+import org.semanticweb.yars.nx.NodeArrayComparator;
 import org.semanticweb.yars.nx.parser.NxParser;
 
 import java.util.logging.Logger;
@@ -296,7 +296,7 @@ public class TestFramework implements Callable<TestFrameworkResult> {
 			mappingsFailures.add(testname);
 		} else{
 			TreeSet<Node[]> mapData = GraphLeaning.mapData(data, coreMap);
-			TreeSet<Node[]> leanDataSet = new TreeSet<Node[]>(NodeComparator.NC);
+			TreeSet<Node[]> leanDataSet = new TreeSet<Node[]>(NodeArrayComparator.NC);
 			leanDataSet.addAll(leanData);
 			if(GraphColouring.GRAPH_COMP.compare(mapData,leanDataSet)!=0){
 				mappingsFailures.add(testname);
@@ -518,7 +518,7 @@ public class TestFramework implements Callable<TestFrameworkResult> {
 		NxParser nxp = new NxParser(br);
 		
 
-		TreeSet<Node[]> triples = new TreeSet<Node[]>(NodeComparator.NC);
+		TreeSet<Node[]> triples = new TreeSet<Node[]>(NodeArrayComparator.NC);
 		
 		while(nxp.hasNext()){
 			Node[] triple = nxp.next();

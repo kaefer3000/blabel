@@ -52,7 +52,7 @@ public class BlabelTest {
 				stmts.add(new Node[] { triple[0], triple[1], triple[2] });
 				bnode = bnode | (triple[0] instanceof BNode) | (triple[2] instanceof BNode);
 			} else {
-				fail("Not a triple " + Nodes.toN3(triple));
+				fail("Not a triple " + Nodes.toString(triple));
 			}
 		}
 
@@ -61,16 +61,16 @@ public class BlabelTest {
 		LabelRDFGraph.labelGraph(stmts, new Callback() {
 
 			@Override
-			public void startDocument() {
+			public void startDocumentInternal() {
 			}
 
 			@Override
-			public void endDocument() {
+			public void endDocumentInternal() {
 			}
 
 			@Override
-			public void processStatement(Node[] nx) {
-				String triple = Nodes.toN3(nx);
+			public void processStatementInternal(Node[] nx) {
+				String triple = Nodes.toString(nx);
 				System.out.println(triple);
 				actual.add(triple);
 			}
@@ -113,7 +113,7 @@ public class BlabelTest {
 				stmts.add(new Node[] { triple[0], triple[1], triple[2] });
 				bnode = bnode | (triple[0] instanceof BNode) | (triple[2] instanceof BNode);
 			} else {
-				fail("Not a triple " + Nodes.toN3(triple));
+				fail("Not a triple " + Nodes.toString(triple));
 			}
 		}
 
@@ -122,16 +122,16 @@ public class BlabelTest {
 		LabelRDFGraph.labelGraph(stmts, new Callback() {
 
 			@Override
-			public void startDocument() {
+			public void startDocumentInternal() {
 			}
 
 			@Override
-			public void endDocument() {
+			public void endDocumentInternal() {
 			}
 
 			@Override
-			public void processStatement(Node[] nx) {
-				String triple = Nodes.toN3(nx);
+			public void processStatementInternal(Node[] nx) {
+				String triple = Nodes.toString(nx);
 				System.out.println(triple);
 				actual.add(triple);
 			}

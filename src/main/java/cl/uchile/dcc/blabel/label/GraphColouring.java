@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 import org.semanticweb.yars.nx.BNode;
 import org.semanticweb.yars.nx.Node;
-import org.semanticweb.yars.nx.NodeComparator;
+import org.semanticweb.yars.nx.NodeArrayComparator;
 import org.semanticweb.yars.nx.parser.NxParser;
 
 import com.google.common.hash.HashCode;
@@ -43,8 +43,8 @@ import cl.uchile.dcc.blabel.label.util.RefinablePartition;
  *
  */
 public class GraphColouring implements Callable<GraphColouring.GraphResult> {
-	public static final Comparator<Node[]> TRIPLE_COMP = NodeComparator.NC;
-	public static final Comparator<TreeSet<Node[]>> GRAPH_COMP = new GraphComparator(NodeComparator.NC);
+	public static final Comparator<Node[]> TRIPLE_COMP = NodeArrayComparator.NC;
+	public static final Comparator<TreeSet<Node[]>> GRAPH_COMP = new GraphComparator(NodeArrayComparator.NC);
 
 	public static final Level LOG_LEVEL = Level.INFO;
 	public static final Logger LOG = Logger.getLogger(GraphColouring.class.getName());
