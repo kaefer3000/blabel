@@ -38,6 +38,7 @@
 	</properties>
 
 	<dependencies>
+		<!-- as long as we have jitpack...
 		<dependency>
 			<groupId>org.semanticweb.yars</groupId>
 			<artifactId>nxparser-parsers</artifactId>
@@ -62,7 +63,7 @@
 			<groupId>org.semanticweb.yars</groupId>
 			<artifactId>nxparser-utilities-nx</artifactId>
 			<version>${nxparser.version}</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>commons-cli</groupId>
 			<artifactId>commons-cli</artifactId>
@@ -79,7 +80,19 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.github.nxparser</groupId>
+			<artifactId>nxparser</artifactId>
+			<version>master-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
+
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
